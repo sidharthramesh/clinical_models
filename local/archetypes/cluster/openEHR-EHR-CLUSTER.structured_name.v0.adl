@@ -1,0 +1,247 @@
+﻿archetype (adl_version=1.4; uid=931a54d8-6ec7-414b-9ae8-87ac041079a5)
+	openEHR-EHR-CLUSTER.structured_name.v0
+
+concept
+	[at0000]	-- Structured name of a person
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Natalia Strauch, Alina Rehberg">
+				["organisation"] = <"Medizinische Hochschule Hannover">
+				["email"] = <"Strauch.Natalia@mh-hannover.de, rehberg.alina@mh-hannover.de">
+			>
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"John Tore Valand, Vebjørn Arntzen, Kanika Kuwelker">
+				["organisation"] = <"Helse Vest IKT AS, Helse Bergen, Oslo University Hospital">
+				["email"] = <"john.tore.valand@helse-vest-ikt.no, varntzen@ous-hf.no, kanika.kuwelker@helse-vest-ikt.no">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+		["date"] = <"2021-04-14">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Zur Darstellung von Angaben zu den einzelnen Bestandteilen des Namens einer Person in der Gesundheitsakte.">
+			use = <"*Use to record details about the structured name of an individual as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index.
+
+In most simple clinical recording use cases, the unstructured 'Name' element within the CLUSTER.person archetype will be sufficient to record the name of an individual as part of a health record. However, in circumstances where a structured name is necessary or desirable for clinical recording purposes, nest this archetype within the 'Structured name' SLOT in CLUSTER.person archetype.
+
+Each data element can be entered as a string of free text - for example, 'Prof Dr', 'Sonja Jane', 'Smith-Brown', 'MP'. Alternatively, as each data element is repeatable within a template:
+- 'Title' could be cloned to 'Title 1' for the value 'Prof' and 'Title 2' for the value 'Dr'; and
+-  'Given name' could be cloned and renamed to 'First name' for the value 'Sonja' and 'Middle name' for the value 'Jane'.
+
+While this archetype has been aligned with ISO 22220, preferred name, name usage, valid dates and the repeating Name component/Order grouping has intentionally not been replicated due to the reduced scope of this archetype.
+
+It is anticipated that in most use cases for which this archetype has been designed, complex family names will simply be recorded as a string. However, it is possible to record them with more granularity and within this structured name pattern using guidance and examples from ISO 22220:2007 (Annex F), including:
+- Family name first, given name/s last;
+- Family names with prefixes eg El Haddad or van der Heyden; and
+- Names containing both father's and mother's family names. (en)">
+			keywords = <"*person, individual, name (en)", ...>
+			misuse = <"Der Achetyp darf nicht verwendet werden, wenn eine unstrukturierte Textzeichenfolge, die den Namen der Person darstellt, für den Zweck geeignet ist. Verwenden Sie zu diesem Zweck das Datenelement „Name“ innerhalb des CLUSTER.person.
+
+Darf nicht für komplexe Namensdarstellung oder -verwaltung, wie z. B. Vorzugsnamen, Namensverwendung oder gültige Verwendungsdaten verwendet werden. Verwenden Sie zu diesem Zweck einen formellen Master Patient Index oder Health Provider Index oder Archetypen, die auf dem demografischen Informationsmodell von openEHR basieren.
+
+Darf nicht verwendet werden, um das formelle Identifikationsmanagement darzustellen oder zu ersetzen oder um ein offizielles demografisches Register oder einen Index zu führen. Verwenden Sie zu diesem Zweck einen formellen Master Patient Index oder Health Provider Index oder Archetypen, die auf dem demografischen Informationsmodell von openEHR basieren.
+
+Darf nicht verwendet werden, um den Behandlungsgegenstand, die Teilnehmer oder den Verfasser der Aufzeichnung und ähnliche Datenelemente darzustellen, die formal in der Patientenakte unter Verwendung der Referenzmodellattribute dargestellt werden sollten.">
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"For å registrere detaljer om de ulike komponentene som utgjør en person sitt navn, for bruk i pasientjournalen.">
+			use = <"*Use to record details about the structured name of an individual as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index.
+
+In most simple clinical recording use cases, the unstructured 'Name' element within the CLUSTER.person archetype will be sufficient to record the name of an individual as part of a health record. However, in circumstances where a structured name is necessary or desirable for clinical recording purposes, nest this archetype within the 'Structured name' SLOT in CLUSTER.person archetype.
+
+Each data element can be entered as a string of free text - for example, 'Prof Dr', 'Sonja Jane', 'Smith-Brown', 'MP'. Alternatively, as each data element is repeatable within a template:
+- 'Title' could be cloned to 'Title 1' for the value 'Prof' and 'Title 2' for the value 'Dr'; and
+-  'Given name' could be cloned and renamed to 'First name' for the value 'Sonja' and 'Middle name' for the value 'Jane'.
+
+While this archetype has been aligned with ISO 22220, preferred name, name usage, valid dates and the repeating Name component/Order grouping has intentionally not been replicated due to the reduced scope of this archetype.
+
+It is anticipated that in most use cases for which this archetype has been designed, complex family names will simply be recorded as a string. However, it is possible to record them with more granularity and within this structured name pattern using guidance and examples from ISO 22220:2007 (Annex F), including:
+- Family name first, given name/s last;
+- Family names with prefixes eg El Haddad or van der Heyden; and
+- Names containing both father's and mother's family names. (en)">
+			keywords = <"*person, individual, name (en)", ...>
+			misuse = <"Brukes ikke dersom ustrukturert fritekst som representerer personens navn er tilstrekkelig for formålet. Bruk dataelementet \"Navn\" i CLUSTER.person for dette formålet. 
+
+Brukes ikke til kompleks navnerepresentasjon eller administrasjon, for eksempel foretrukne navn, navnebruk eller gyldige bruksdatoer. Bruk et formelt pasientregister, helsepersonellregister eller arketyper basert på openEHR demografisk informasjonsmodell til dette formålet.
+	
+Brukes ikke til å representere eller erstatte de formelle demografiske detaljene for formell identitetsforvaltning, eller for å opprettholde et demografisk register eller en indeks. Bruk et formelt pasientregister, helsepersonellregister eller arketyper basert på openEHR demografisk informasjonsmodell til dette formålet.
+
+Brukes ikke for å representere pasient, deltakere eller forfatter av skjema eller lignende, som skal representeres formelt i pasientjournalen, bruk attributter fra Referansemodellen for dette formålet.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about the structured name of an individual as they are known or understood in the course of clinical documentation.">
+			use = <"Use to record details about the structured name of an individual as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index.
+
+In most simple clinical recording use cases, the unstructured 'Name' element within the CLUSTER.person archetype will be sufficient to record the name of an individual as part of a health record. However, in circumstances where a structured name is necessary or desirable for clinical recording purposes, nest this archetype within the 'Structured name' SLOT in CLUSTER.person archetype.
+
+Each data element can be entered as a string of free text - for example, 'Prof Dr', 'Sonja Jane', 'Smith-Brown', 'MP'. Alternatively, as each data element is repeatable within a template:
+- 'Title' could be cloned to 'Title 1' for the value 'Prof' and 'Title 2' for the value 'Dr'; and
+-  'Given name' could be cloned and renamed to 'First name' for the value 'Sonja' and 'Middle name' for the value 'Jane'.
+
+While this archetype has been aligned with ISO 22220, preferred name, name usage, valid dates and the repeating Name component/Order grouping has intentionally not been replicated due to the reduced scope of this archetype.
+
+It is anticipated that in most use cases for which this archetype has been designed, complex family names will simply be recorded as a string. However, it is possible to record them with more granularity and within this structured name pattern using guidance and examples from ISO 22220:2007 (Annex F), including:
+- Family name first, given name/s last;
+- Family names with prefixes eg El Haddad or van der Heyden; and
+- Names containing both father's and mother's family names.">
+			keywords = <"person, individual, name", ...>
+			misuse = <"Not to be used if an unstructured text string representing the individual's name is adequate for the purpose. Use the 'Name' data element within the CLUSTER.person for this purpose.
+
+Not to be used for complex name representation or management, such as preferred names, name usage or valid dates of usage. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+
+Not to be used to represent or replace formal identification management or for the purposes of maintaining an official demographic register or index. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+
+Not to be used to represent the subject of care, participants or author of the record and similar data elements that should be represented formally in the health record using the Reference Model attributes.">
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Shinji Kobayashi, National Institute of Public Health, Japan", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway", "Ludvig Eek Hofmann, Cambio Healthcare Systems AB, Sweden", "Rebecka Hansson, Cambio Healthcare Systems AB, Sweden">
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Health Care Client Identification - AS 5017-2006. New South Wales (AU): Standards Australia; 2006.
+
+Health Care Provider Identification - AS 4846-2006. New South Wales (AU): Standards Australia; 2006.
+
+Health informatics — Identification of subjects of health care - ISO/TS 22220:2007. Geneva: International Organization for Standardization; 2007.
+
+HL7 FHIR Resource - Person v4.0.1: R4 [Internet]. Health Level Seven International; [accessed 2021 05 04]. Available from: http://hl7.org/fhir/2021May/person.html.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"5EB06F4BDF0A03929BEF3BB9D4FA9210">
+		["build_uid"] = <"1f3f3057-c5d1-4749-b3be-8103812154e1">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Structured name of a person
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..*} matches {    -- Title
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..*} matches {    -- Given name
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..*} matches {    -- Family name
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..*} matches {    -- Suffix
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+		}
+	}
+
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Structured name of a person">
+					description = <"Discrete components of an individual's name.">
+				>
+				["at0001"] = <
+					text = <"Title">
+					description = <"One or more honorific form(s) of address commencing a name.">
+					comment = <"Occurrences for this data element are set to 0..* to allow for more than one Title to be recorded. Coding with an external terminology is preferred, where possible. For example: 'Doctor'; 'Ms'; 'Mx'; or 'Professor Dr'.">
+				>
+				["at0005"] = <
+					text = <"Family name">
+					description = <"One or more name(s) that an individual has in common with a family group.">
+					comment = <"Also known as 'Last name' or 'Surname'. Occurrences for this data element are set to 0..* to allow for more than one Family name to be recorded. Complex names such as 'El Haddad' or 'van der Heyden' can be recorded using this naming pattern, as identified in ISO 22220 (Annex F), but for the intended use case for this archetype it is most likely that the full family name will be recorded as a string.">
+				>
+				["at0002"] = <
+					text = <"Given name">
+					description = <"One or more unique name(s) used to identify an individual within a family group.">
+					comment = <"Occurrences for this data element are set to 0..* to allow for more than one Given name to be recorded. In addition, this data element may be cloned and renamed within a template to allow discrete recording of different types of Given name - for example 'First name', 'Middle name', 'Preferred name' or 'Nickname', as required for a specific use case.">
+				>
+				["at0006"] = <
+					text = <"Suffix">
+					description = <"One or more term(s) placed after all other name components, usually to differentiate an individual from a family member with identical Given and Family name components.">
+					comment = <"Occurrences for this data element are set to 0..* to allow for more than one Suffix to be recorded. Coding with an external terminology is preferred, where possible. For example: 'Junior (Jr)'; 'Senior (Sr)'; 'Second (II)'.">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Strukturierter Name der Person">
+					description = <"Details zu den einzelnen Komponenten des Namens einer Person zur Verwendung in einer Gesundheitsakte.">
+				>
+				["at0001"] = <
+					text = <"Titel">
+					description = <"*One or more honorific form(s) of address commencing a name. (en)">
+					comment = <"Die Kodierung mit einer externen Terminologie wird nach Möglichkeit bevorzugt. Beispiel: \"Doktor\", \"Ms\", \"Mx\" oder \"Professor Dr\".">
+				>
+				["at0002"] = <
+					text = <"Vorname">
+					description = <"*One or more unique name(s) used to identify an individual within a family group. (en)">
+					comment = <"*Occurrences for this data element are set to 0..* to allow for more than one Given name to be recorded. In addition, this data element may be cloned and renamed within a template to allow discrete recording of different types of Given name - for example 'First name', 'Middle name', 'Preferred name' or 'Nickname', as required for a specific use case. (en)">
+				>
+				["at0005"] = <
+					text = <"Nachname">
+					description = <"*One or more name(s) that an individual has in common with a family group. (en)">
+					comment = <"*Also known as 'Last name' or 'Surname'. Occurrences for this data element are set to 0..* to allow for more than one Family name to be recorded. Complex names such as 'El Haddad' or 'van der Heyden' can be recorded using this naming pattern, as identified in ISO 22220 (Annex F), but for the intended use case for this archetype it is most likely that the full family name will be recorded as a string. (en)">
+				>
+				["at0006"] = <
+					text = <"Suffix">
+					description = <"*One or more term(s) placed after all other name components, usually to differentiate an individual from a family member with identical Given and Family name components. (en)">
+					comment = <"Die Codierung mit einer externen Terminologie wird nach Möglichkeit bevorzugt. Zum Beispiel: „Junior (Jr)“, „Senior (Sr)“, \" Der Zweite (II)\".">
+				>
+			>
+		>
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"Strukturert navn">
+					description = <"Detaljer om de ulike komponentene i en person sitt navn.">
+				>
+				["at0001"] = <
+					text = <"Tittel">
+					description = <"*One or more honorific form(s) of address commencing a name. (en)">
+					comment = <"Forekomster for dette dataelementet er satt til 0..* slik at mer enn én tittel kan registreres. Koding med ekstern terminologi foretrekkes der det er mulig. For eksempel: \"Doktor\"; \"Fru\"; \"Herr\"; eller \"Professor dr\".">
+				>
+				["at0002"] = <
+					text = <"Fornavn">
+					description = <"*One or more unique name(s) used to identify an individual within a family group. (en)">
+					comment = <"*Occurrences for this data element are set to 0..* to allow for more than one Given name to be recorded. In addition, this data element may be cloned and renamed within a template to allow discrete recording of different types of Given name - for example 'First name', 'Middle name', 'Preferred name' or 'Nickname', as required for a specific use case. (en)">
+				>
+				["at0005"] = <
+					text = <"Etternavn">
+					description = <"*One or more name(s) that an individual has in common with a family group. (en)">
+					comment = <"*Also known as 'Last name' or 'Surname'. Occurrences for this data element are set to 0..* to allow for more than one Family name to be recorded. Complex names such as 'El Haddad' or 'van der Heyden' can be recorded using this naming pattern, as identified in ISO 22220 (Annex F), but for the intended use case for this archetype it is most likely that the full family name will be recorded as a string. (en)">
+				>
+				["at0006"] = <
+					text = <"Suffiks">
+					description = <"*One or more term(s) placed after all other name components, usually to differentiate an individual from a family member with identical Given and Family name components. (en)">
+					comment = <"Forekomster for dette dataelementet er satt til 0..* slik at mer en ett \"Suffiks\" kan registreres. Koding med en ekstern terminologi er foretrukket, hvor mulig. For eksempel: \"Junior (Jr)\", \"Senior (Sr)\" og \"Den Andre (II)\".">
+				>
+			>
+		>
+	>
