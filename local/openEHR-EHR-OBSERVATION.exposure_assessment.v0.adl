@@ -1,0 +1,454 @@
+archetype (adl_version=1.4; uid=7bb54daf-b7a3-4189-83f3-85ee407388bd)
+	openEHR-EHR-OBSERVATION.exposure_assessment.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Natalia Strauch, Alina Rehberg">
+				["organisation"] = <"Medizinische Hochschule Hannover">
+				["email"] = <"Strauch.Natalia@mh-hannover.de, rehberg.alina@mh-hannover.de">
+			>
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"Silje Ljosland Bakke, Marit Alice Venheim">
+				["organisation"] = <"Helse Vest IKT AS">
+				["email"] = <"silje.ljosland.bakke@helse-vest-ikt.no, marit.alice.venheim@helse-vest-ikt.no">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2020-03-14">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"*To record the responses to a screening questionnaire for potential exposure to harmful agents. (en)">
+			use = <"*Use to record the responses to a screening questionnaire for potential exposure to harmful agents.
+
+Common use cases include, but are not limited to:
+- Systematic questioning in any consultation; or
+- Specific questioning related to infectious disease surveillance.
+	
+In order to record the response at a specific point in time or within an interval of time, use the EVENT RM attribute.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies an exposure and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the exposure should be recorded using the EVALUATION.exposure archetype. (en)">
+			misuse = <"Nicht zur Darstellung von detaillierten Informationen über eine bestimmte Exposition, die als vorhanden identifiziert wurde oder vorhanden war. Verwenden Sie zu diesem Zweck den Archetyp EVALUATION.exposure.">
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"*To record the responses to a screening questionnaire for potential exposure to harmful agents. (en)">
+			use = <"*Use to record the responses to a screening questionnaire for potential exposure to harmful agents.
+
+Common use cases include, but are not limited to:
+- Systematic questioning in any consultation; or
+- Specific questioning related to infectious disease surveillance.
+	
+In order to record the response at a specific point in time or within an interval of time, use the EVENT RM attribute.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies an exposure and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the exposure should be recorded using the EVALUATION.exposure archetype. (en)">
+			misuse = <"Skal ikke brukes for å registrere spesifikke detaljer om en eksponering som er identifisert som å være eller har vært tilstede. Bruk EVALUATION.problem_exposure for dette formålet.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the responses to a screening questionnaire for potential exposure to harmful agents.">
+			copyright = <"© openEHR Foundation">
+			use = <"Use to record the responses to a screening questionnaire for potential exposure to harmful agents.
+
+Common use cases include, but are not limited to:
+- Systematic questioning in any consultation; or
+- Specific questioning related to infectious disease surveillance.
+	
+In order to record the response at a specific point in time or within an interval of time, use the EVENT RM attribute.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies an exposure and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the exposure should be recorded using the EVALUATION.exposure archetype.">
+			misuse = <"Not to be used to record details about a specific exposure that has been identified to be or have been present. For this purpose, use the EVALUATION.exposure archetype.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"DC89EE6125500393941B6102ABD3904A">
+		["build_uid"] = <"e50068b4-307e-4787-a2e3-d5bb9d3128c0">
+		["ip_acknowledgements"] = <"This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyrighted material of the International Health Terminology Standards Development Organisation (IHTSDO). Where an implementation of this artefact makes use of SNOMED CT content, the implementer must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomedct or info@snomed.org.">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Exposure screening questionnaire
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {0..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0042] matches {    -- Item tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0043] matches {    -- Screening purpose
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0057] occurrences matches {0..1} matches {    -- Any exposure?
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0058,    -- Exposed
+													at0059,    -- Not exposed
+													at0060]    -- Unknown
+												}
+											}
+											DV_TEXT matches {*}
+										}
+									}
+									CLUSTER[at0044] occurrences matches {0..*} matches {    -- Specific exposure
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0045] matches {    -- Exposure event
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0046] occurrences matches {0..1} matches {    -- Exposure?
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0047,    -- Present
+															at0049,    -- Absent
+															at0048]    -- Unknown
+														}
+													}
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0063] occurrences matches {0..*} matches {    -- Date of exposure
+												value matches {
+													DV_DATE_TIME matches {*}
+													DV_INTERVAL<DV_DATE_TIME> matches {*}
+												}
+											}
+											allow_archetype CLUSTER[at0062] occurrences matches {0..*} matches {    -- Screening details
+												include
+													archetype_id/value matches {/.*/}
+											}
+											ELEMENT[at0055] occurrences matches {0..1} matches {    -- Comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0004] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0056] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Exposure screening questionnaire">
+					description = <"An individual- or self-reported questionnaire screening for potential exposure to a chemical, physical or biological agent which has caused or may cause harm to an individual.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0042"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0043"] = <
+					text = <"Screening purpose">
+					description = <"The name of the chemical, physical or biological agent to which an individual may have been exposed.">
+					comment = <"Coding of 'Agent' with a terminology is preferred, where possible. Free text should be used only if there is no appropriate terminology available. For example: 2019-nCoV; or HIV.">
+				>
+				["at0044"] = <
+					text = <"Specific exposure">
+					description = <"Details about each possible specific exposure circumstance.">
+				>
+				["at0045"] = <
+					text = <"Exposure event">
+					description = <"The circumstance of possible exposure.">
+					comment = <"For example: Travel to an 'at risk' location; exposure to infected body fluids; or worked as a dental technician. Coding of 'Exposure situation' with a terminology is preferred, where possible.">
+				>
+				["at0046"] = <
+					text = <"Exposure?">
+					description = <"Presence of the exposure situation.">
+				>
+				["at0047"] = <
+					text = <"Present">
+					description = <"The specific exposure situation is or has been present.">
+				>
+				["at0048"] = <
+					text = <"Unknown">
+					description = <"It is not known whether the exposure situation is or has been present or absent.">
+				>
+				["at0049"] = <
+					text = <"Absent">
+					description = <"The specific exposure situation is or has been absent.">
+				>
+				["at0055"] = <
+					text = <"Comment">
+					description = <"Additional narrative about the specific exposure event, not captured in other fields.">
+				>
+				["at0056"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0057"] = <
+					text = <"Any exposure?">
+					description = <"Presence of any relevant exposure.">
+				>
+				["at0058"] = <
+					text = <"Exposed">
+					description = <"The individual has been exposed to the agent.">
+				>
+				["at0059"] = <
+					text = <"Not exposed">
+					description = <"The individual has not been exposed to the agent.">
+				>
+				["at0060"] = <
+					text = <"Unknown">
+					description = <"It is not known whether the individual has been exposed to the agent.">
+				>
+				["at0062"] = <
+					text = <"Screening details">
+					description = <"Additional details or questions about the specific exposure event.">
+				>
+				["at0063"] = <
+					text = <"Date of exposure">
+					description = <"The date/s when the individual was exposed to the agent.">
+					comment = <"Can be a partial date, for example, only a year.">
+				>
+			>
+		>
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"Spørreskjema for eksponering">
+					description = <"*An individual- or self-reported questionnaire screening for potential exposure to a chemical, physical or biological agent which has caused or may cause harm to an individual. (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Uspesifisert hendelse">
+					description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i et templat eller i en applikasjon.">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0042"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0043"] = <
+					text = <"*Screening purpose (en)">
+					description = <"Navnet på den kjemiske, fysiske eller biologiske agensen som et individ kan ha blitt utsatt for.">
+					comment = <"Koding av \"Agens\" med en terminologi er å foretrekke, der det er mulig. Fritekst skal bare brukes hvis det ikke er noen passende terminologi tilgjengelig. For eksempel: 2019-nCoV; eller hiv.">
+				>
+				["at0044"] = <
+					text = <"Spesifikk eksponeringsmåte">
+					description = <"Detaljer om hvert mulige spesifikke eksponeringsforhold.">
+				>
+				["at0045"] = <
+					text = <"*Exposure event (en)">
+					description = <"Omstendigheten rundt mulig eksponering.">
+					comment = <"For eksempel: Reist til et \"utsatt\" sted; eksponering for infiserte kroppsvæsker; eller jobbet som tanntekniker. Koding av \"Eksponeringssituasjon\" med en terminologi er å foretrekke, der det er mulig.">
+				>
+				["at0046"] = <
+					text = <"*Exposure? (en)">
+					description = <"Tilstedeværelse av eksponeringssituasjon.">
+				>
+				["at0047"] = <
+					text = <"Tilstede">
+					description = <"Den spesifikke eksponeringssituasjonen er eller har vært til stede.">
+				>
+				["at0048"] = <
+					text = <"Ukjent">
+					description = <"Den ukjent om den spesifikke eksponeringssituasjonen er eller har vært til stede.">
+				>
+				["at0049"] = <
+					text = <"Ikke tilstede">
+					description = <"Den spesifikke eksponeringssituasjonen er ikke eller har ikke vært til stede.">
+				>
+				["at0055"] = <
+					text = <"Kommentar">
+					description = <"*Additional narrative about the specific exposure event, not captured in other fields. (en)">
+				>
+				["at0056"] = <
+					text = <"Tilleggsinformasjon">
+					description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+					comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR.">
+				>
+				["at0057"] = <
+					text = <"*Any exposure? (en)">
+					description = <"Individet er eller har blitt eksponert for relevant agens.">
+				>
+				["at0058"] = <
+					text = <"Exponert">
+					description = <"Individet har er eller har blitt eksponert for agensen. 24932003 | Exposure to (contextual qualifier) (qualifier value) |">
+				>
+				["at0059"] = <
+					text = <"Ikke eksponert">
+					description = <"Individet har ikke blitt eksponert for agensen.">
+				>
+				["at0060"] = <
+					text = <"Ukjent">
+					description = <"Det er ukjent om individet er eller har blitt eksponert for agensen.">
+				>
+				["at0062"] = <
+					text = <"*Screening details (en)">
+					description = <"*Additional details or questions about the specific exposure event. (en)">
+				>
+				["at0063"] = <
+					text = <"*Date of exposure (en)">
+					description = <"*The date/s when the individual was exposed to the agent. (en)">
+					comment = <"*Can be a partial date, for example, only a year. (en)">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Screening-Fragebogen zur Exposition">
+					description = <"*An individual- or self-reported questionnaire screening for potential exposure to a chemical, physical or biological agent which has caused or may cause harm to an individual. (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Beliebiges Ereignis">
+					description = <"Standardwert, ein undefinierter/s Zeitpunkt oder Intervallereignis, das explizit im Template oder zur Laufzeit der Anwendung definiert werden kann.">
+				>
+				["at0004"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0042"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0043"] = <
+					text = <"*Screening purpose (en)">
+					description = <"Der Name des chemischen, physikalischen oder biologischen Stoffes, dem eine Person ausgesetzt gewesen sein könnte.">
+					comment = <"Die Codierung von \"Stoff\" mit einer Terminologie wird bevorzugt, wenn möglich. Freitext sollte nur verwendet werden, wenn keine geeignete Terminologie zur Verfügung steht. Zum Beispiel: 2019-nCoV oder HIV.">
+				>
+				["at0044"] = <
+					text = <"Spezifische Exposition">
+					description = <"Details zu jedem möglichen spezifischen Expositionsumstand.">
+				>
+				["at0045"] = <
+					text = <"*Exposure event (en)">
+					description = <"Der Umstand einer möglichen Exposition.">
+					comment = <"Zum Beispiel: Reisen zu einem gefährdeten Ort; Exposition gegenüber infizierten Körperflüssigkeiten oder als Zahntechniker gearbeitet. Wenn möglich, wird die Codierung der Expositionssituation mit einer Terminologie bevorzugt.">
+				>
+				["at0046"] = <
+					text = <"*Exposure? (en)">
+					description = <"Vorhandensein der Expositionssituation.">
+				>
+				["at0047"] = <
+					text = <"Vorhanden">
+					description = <"Die spezifische Expositionssituation ist oder war vorhanden.">
+				>
+				["at0048"] = <
+					text = <"Unbekannt">
+					description = <"Es ist unbekannt, ob die spezifische Expositionssituation ist oder war vorhanden oder nicht vorhanden.">
+				>
+				["at0049"] = <
+					text = <"Nicht vorhanden">
+					description = <"Die spezifische Expositionssituation ist oder war nicht vorhanden.">
+				>
+				["at0055"] = <
+					text = <"Kommentar">
+					description = <"*Additional narrative about the specific exposure event, not captured in other fields. (en)">
+				>
+				["at0056"] = <
+					text = <"Erweiterung">
+					description = <"Zusätzliche Informationen zur Erfassung lokaler Inhalte oder Anpassung an andere Referenzmodelle/Formalismen.">
+					comment = <"Zum Beispiel: Lokaler Informationsbedarf oder zusätzliche Metadaten zur Anpassung an FHIR-Ressourcen oder CIMI-Modelle.">
+				>
+				["at0057"] = <
+					text = <"*Any exposure? (en)">
+					description = <"Vorhandensein einer relevanten Exposition.">
+				>
+				["at0058"] = <
+					text = <"Ausgesetzt">
+					description = <"Die Person wurde dem Stoff ausgesetzt.">
+				>
+				["at0059"] = <
+					text = <"Nicht ausgesetzt">
+					description = <"Die Person wurde dem Stoff nicht ausgesetzt.">
+				>
+				["at0060"] = <
+					text = <"Unbekannt">
+					description = <"Es ist nicht bekannt, ob die Person dem Stoff ausgesetzt war.">
+				>
+				["at0062"] = <
+					text = <"*Screening details (en)">
+					description = <"*Additional details or questions about the specific exposure event. (en)">
+				>
+				["at0063"] = <
+					text = <"*Date of exposure (en)">
+					description = <"*The date/s when the individual was exposed to the agent. (en)">
+					comment = <"*Can be a partial date, for example, only a year. (en)">
+				>
+			>
+		>
+	>
+	term_binding = <
+		["SNOMED-CT"] = <
+			items = <
+				["at0048"] = <[SNOMED-CT::261665006]>
+				["at0047"] = <[SNOMED-CT::410515003]>
+				["at0049"] = <[SNOMED-CT::410516002]>
+				["at0060"] = <[SNOMED-CT::261665006]>
+				["at0058"] = <[SNOMED-CT::24932003]>
+			>
+		>
+	>
